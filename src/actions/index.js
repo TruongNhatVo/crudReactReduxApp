@@ -12,3 +12,10 @@ export const sortValue = (value) => {
 		value
 	}
 }
+
+export const addTask = (task) => {
+	return {
+		type : types.ADD_TASK,
+		task
+	}
+}
