@@ -6,10 +6,9 @@ export const status = () => {
 	}
 }
 
-export const sortValue = (value) => {
+export const listTask = () => {
 	return {
-		type : types.SORT_VALUE,
-		value
+		type : types.LIST_ALL,
 	}
 }
 

@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import TaskItem from './taskItem';
 import './../style/taskData.scss'
 // what up
 class TaskData extends Component {
+
   render() {
+    var task = this.props.taskItem;
+    console.log('task data',task);
+    var elmTasks = task.map((task, index) => {
+      console.log(index);
+      return (
+        <TaskItem
+            key={index}
+            name={task.name}
+            status={task.status}
+            order={index + 1}
+        />
+      )
+    });
+    
     return (
       <div className="table-responsive task-data">
         <table className="table table-hover">
@@ -15,17 +32,7 @@ class TaskData extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Học angular</td>
-              <td>
-                <span className="label label-info">Completed</span>
-              </td>
-              <td>
-                <button type="button" className="btn btn-success">Edit</button>
-                <button type="button" className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
+            { elmTasks }
           </tbody>
         </table>
       </div>
@@ -33,4 +40,16 @@ class TaskData extends Component {
   }
 }
 
-export default TaskData;
+
+const mapStateToProps = state => {
+  return {
+    taskItem : state.task
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TaskData);

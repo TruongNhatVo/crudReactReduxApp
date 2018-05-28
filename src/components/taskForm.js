@@ -16,8 +16,16 @@ class TaskForm extends Component {
   onSave = (e) => {
     e.preventDefault();
     this.props.onSaveTask(this.state);
+    this.onClear();
   }
   
+  onClear() {
+    this.setState({
+      name : '',
+      status: false
+    })
+  }
+
   onHandleChange = (e) => {
     var target = e.target;
     var name = target.name;
@@ -91,6 +99,5 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(TaskForm);
