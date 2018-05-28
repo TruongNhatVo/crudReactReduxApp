@@ -25,9 +25,6 @@ class TaskForm extends Component {
     this.setState({
       [name] : value
     });
-    if (this.state.name) {
-      this.refs.btnSave.removeAttribute("disabled");
-    }
   }
 
   render() {
@@ -64,7 +61,7 @@ class TaskForm extends Component {
                 <div className="form-group">
                   <div className="col-sm-12">
                     <button 
-                      disabled 
+                      disabled={!this.state.name}
                       ref="btnSave" 
                       type="submit"
                       className="btn btn-primary" 
