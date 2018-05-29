@@ -1,6 +1,22 @@
 .task-data {
 	th, td {
 		vertical-align: middle!important;
+		font-weight: bold;
+	}
+	thead {
+		background: white;
+		border-bottom: 5px solid silver;
+	}
+	tr {
+		&:nth-child(even) {
+			background: silver;
+		}
+	}
+	.label {
+		cursor: pointer;
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 	.btn-danger {
 		margin-left: 10px;

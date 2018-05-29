@@ -9,12 +9,10 @@ class TaskData extends Component {
     var task = this.props.taskItem;
     console.log('task data',task);
     var elmTasks = task.map((task, index) => {
-      console.log(index);
       return (
         <TaskItem
             key={index}
-            name={task.name}
-            status={task.status}
+            task={task}
             order={index + 1}
         />
       )
