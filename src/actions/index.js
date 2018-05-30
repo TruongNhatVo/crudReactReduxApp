@@ -32,3 +32,17 @@ export const deleteTask = (id) => {
 		id
 	}
 }
+
+export const editTask = (task) => {
+	return {
+		type : types.EDIT_TASK,
+		task
+	}
+}
+
+export const search = (keyword) => {
+	return {
+		type : types.SEARCH_TASK,
+		keyword
+	}
+}

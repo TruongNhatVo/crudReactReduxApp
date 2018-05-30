@@ -7,6 +7,11 @@ class TaskItem extends Component {
   onUpdateStatus = () => {
     this.props.updateStatus(this.props.task.id);
   }
+
+  onEditTask = () => {
+    this.props.editTask(this.props.task);
+  }
+
   onDeleteTask = () => {
     let result = window.confirm('Do you wanna delete this task');
     if(result) {
@@ -23,7 +28,6 @@ class TaskItem extends Component {
         <td>{ this.props.task.name }</td>
         <td>
           <span 
-            className="label label-info"
             className={ this.props.task.status === true ? "label label-info" : "label label-danger" }
             onClick={ this.onUpdateStatus.bind(this.props.task.id) }
           >
@@ -34,6 +38,7 @@ class TaskItem extends Component {
           <button 
             type="button" 
             className="btn btn-success"
+            onClick={this.onEditTask}
           >Edit <i className="fas fa-edit"></i>
           </button>
           <button 
@@ -61,6 +66,9 @@ const mapDispatchToProps = dispatch => {
     },
     deleteTask : (taskId) => {
       dispatch(actions.deleteTask(taskId))
+    },
+    editTask : (task) => {
+      dispatch(actions.editTask(task))
     }
   }
 }

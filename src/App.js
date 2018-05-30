@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import TaskForm from './components/taskForm';
 import TaskData from './components/taskData';
+import SearchTask from './components/searchTask';
 import './App.scss';
 // what up
 class App extends Component {
@@ -15,6 +15,7 @@ class App extends Component {
       		<TaskForm></TaskForm>
       	</div>
       	<div className="col-xs-12 col-sm-8">
+          <SearchTask></SearchTask>
       		<TaskData></TaskData>
       	</div>
       </div>

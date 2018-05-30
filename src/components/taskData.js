@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import TaskItem from './taskItem';
-import './../style/taskData.scss'
-// what up
+import './../style/taskData.scss';
+
 class TaskData extends Component {
 
   render() {
     var task = this.props.taskItem;
-    console.log('task data',task);
+    var keyword = this.props.keyword;
+    task = task.filter((task) => {
+      return task.name.toLowerCase().indexOf(keyword.toLowerCase()) != -1;
+    })
+
     var elmTasks = task.map((task, index) => {
       return (
         <TaskItem
@@ -41,7 +45,8 @@ class TaskData extends Component {
 
 const mapStateToProps = state => {
   return {
-    taskItem : state.task
+    taskItem : state.task,
+    keyword : state.keyword
   }
 }
 

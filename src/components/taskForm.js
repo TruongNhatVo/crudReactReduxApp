@@ -12,6 +12,18 @@ class TaskForm extends Component {
       status : false
     }
   }
+  
+  componentWillReceiveProps(nextProps) {
+    if(nextProps) {
+      this.setState({
+        id : nextProps.editTask.id,
+        name : nextProps.editTask.name,
+        status : nextProps.editTask.status
+      });
+    } else {
+      this.onClear();
+    }
+  }
 
   onSave = (e) => {
     e.preventDefault();
@@ -21,6 +33,7 @@ class TaskForm extends Component {
   
   onClear() {
     this.setState({
+      id : '',
       name : '',
       status: false
     })
@@ -45,7 +58,7 @@ class TaskForm extends Component {
           <div className="panel-body form-content">
               <form onSubmit={this.onSave}>
                 <div className="form-group">
-                  <label>Add task name</label>
+                  <label>{ !this.state.id ? 'Add task' : 'Edit task' }</label>
                   <input 
                     type="text" 
                     name="name"
@@ -55,7 +68,7 @@ class TaskForm extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Choose status of task</label>
+                  <label>{ !this.state.id ? 'Choose status of task' : 'Edit task status' }</label>
                   <select 
                     name="status"
                     className="form-control"
@@ -76,7 +89,11 @@ class TaskForm extends Component {
                     >
                       Save <i className="fas fa-save"></i>
                     </button>
-                    <button type="button" className="btn btn-danger ml">Remove <i className="fas fa-times-circle"></i></button>
+                    <button 
+                      type="button" 
+                      disabled={!this.state.id}
+                      className="btn btn-danger ml"
+                      >Cacel <i className="fas fa-times-circle"></i></button>
                   </div>
                 </div>
             </form>
@@ -89,6 +106,7 @@ class TaskForm extends Component {
 
 const mapStateToProps = state => {
   return {
+    editTask : state.editTask
   }
 }
 
